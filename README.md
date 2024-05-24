@@ -8,7 +8,6 @@ This repository contains a PowerShell script that automates the installation of 
 - **PowerShell Modules**: Installs necessary PowerShell modules for PowerApps Administration.
 - **Git Installation and Configuration**: Installs Git and configures it with the user's Windows credentials.
 - **Azure Storage Explorer**: Installs Azure Storage Explorer for managing Azure storage resources.
-- **Microsoft Power Platform CLI**: Downloads and installs Microsoft Power Platform CLI, aka PAC CLI.
 - **XrmToolBox Setup**: Downloads the latest release of XrmToolBox, extracts it to the user's Desktop, and organizes it in a specified folder.
 - **VSCode Extensions**: Installs useful VSCode extensions for Azure and Power Platform development.
 
