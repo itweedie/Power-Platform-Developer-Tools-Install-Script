@@ -55,6 +55,9 @@ Execute-WingetCommand "winget install --id=Postman.Postman -e --accept-package-a
 # Install Visual Studio 2022 Professional
 Execute-WingetCommand "winget install --id=Microsoft.VisualStudio.2022.Professional -e --accept-package-agreements"
 
+# Install Node.js (includes NPM)
+Execute-WingetCommand "winget install --id=OpenJS.NodeJS -e --accept-package-agreements"
+
 # Install PowerShell modules for PowerApps Administration
 try {
     Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Scope CurrentUser
