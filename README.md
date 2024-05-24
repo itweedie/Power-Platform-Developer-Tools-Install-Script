@@ -4,7 +4,7 @@ This repository contains a PowerShell script that automates the installation of 
 
 ## Features
 
-- **Automated Installation**: Installs popular development tools including Visual Studio Code, Power BI Desktop, SQL Server Management Studio, Windows Terminal, Notepad++, PowerToys, Postman, iTunes, Microsoft To Do, and Visual Studio 2022 Professional.
+- **Automated Installation**: Installs popular development tools including Visual Studio Code, Power BI Desktop, SQL Server Management Studio, Windows Terminal, Notepad++, PowerToys, Postman, and Visual Studio 2022 Professional.
 - **PowerShell Modules**: Installs necessary PowerShell modules for PowerApps Administration.
 - **Git Installation**: Ensures Git is installed for version control.
 - **Azure Storage Explorer**: Installs Azure Storage Explorer for managing Azure storage resources.
