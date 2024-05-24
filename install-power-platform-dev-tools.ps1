@@ -96,6 +96,7 @@ catch {
     Write-Host $errorMessage -ForegroundColor Red
 }
 
+
 # Download, extract, and set up XrmToolBox
 
 # Define paths
@@ -199,6 +200,6 @@ if ($errors.Count -gt 0) {
     Write-Host "`nErrors encountered during the execution of the script:`n" -ForegroundColor Red
     $errors | ForEach-Object { Write-Host $_ -ForegroundColor Red }
 } else {
-    # TODO: not currenrtly catching the errors.
-    #Write-Host "`nNo errors encountered during the execution of the script."
+    # TODO: Not catching all the errors
+    # Write-Host "`nNo errors encountered during the execution of the script."
 }
