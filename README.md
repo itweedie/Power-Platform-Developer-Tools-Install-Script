@@ -1,4 +1,4 @@
-# Power Pages Developer Tools Install Script
+# Power Platform Developer Tools Install Script
 
 This repository contains a PowerShell script that automates the installation of essential developer tools for Power Pages development. Using `winget`, it installs various software packages for a quick and efficient setup. It also downloads, extracts, and sets up the latest release of XrmToolBox, installs useful PowerShell modules, configures Git, and sets up VSCode extensions.
 
@@ -31,7 +31,7 @@ This repository contains a PowerShell script that automates the installation of 
    }
 
    # Download and run the script from GitHub
-   Invoke-WebRequest -Uri "https://raw.githubusercontent.com/itweedie/Power-Pages-Developer-Tools-Install-Script/main/install-power-platform-dev-tools.ps1" -OutFile "$desktopPath\install-power-platform-dev-tools.ps1"
+   Invoke-WebRequest -Uri "https://raw.githubusercontent.com/itweedie/Power-Platform-Developer-Tools-Install-Script/main/install-power-platform-dev-tools.ps1" -OutFile "$desktopPath\install-power-platform-dev-tools.ps1"
    PowerShell -ExecutionPolicy Bypass -File "$desktopPath\install-power-platform-dev-tools.ps1"
    ```
 
