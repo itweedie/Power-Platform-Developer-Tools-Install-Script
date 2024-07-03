@@ -207,41 +207,61 @@ if (Prompt-Install -description "XrmToolBox") {
 
 
 # Configure Git with user name and email from Windows
-Write-Host "Configuring Git with user name and email from Windows..."
-try {
-    # Get current user name
-    $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-    
-    # Split user name to get the user part and domain part
-    $userParts = $userName.Split('\')
-    $userDomain = $userParts[0]
-    $userShortName = $userParts[1]
-    
-    # Construct the email address assuming the domain follows a pattern, e.g., user@domain.com
-    $userEmail = "$userShortName@$userDomain.com"
-    
-    # Confirm user name
-    $confirmedUserName = Read-Host "Current username is '$userShortName'. If this is correct, press Enter. Otherwise, enter the correct username"
-    if (-not [string]::IsNullOrEmpty($confirmedUserName)) {
-        $userShortName = $confirmedUserName
-    }
+# Function to check if Git is installed
+function Check-GitInstalled {
+    $gitPath = (Get-Command git -ErrorAction SilentlyContinue).Path
+    return $gitPath -ne $null
+}
 
-    # Confirm user email
-    $confirmedUserEmail = Read-Host "Current email is '$userEmail'. If this is correct, press Enter. Otherwise, enter the correct email"
-    if (-not [string]::IsNullOrEmpty($confirmedUserEmail)) {
-        $userEmail = $confirmedUserEmail
+# Configure Git with user name and email from Windows
+Write-Host "Configuring Git with user name and email from Windows..."
+
+# Check if Git is installed
+if (Check-GitInstalled) {
+    # Ask user if they would like Git to be configured
+    $configureGit = Read-Host "Git is installed. Would you like to configure Git with your Windows user name and email? (y/n)"
+    if ($configureGit -eq 'y') {
+        try {
+            # Get current user name
+            $userName = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+            
+            # Split user name to get the user part and domain part
+            $userParts = $userName.Split('\')
+            $userDomain = $userParts[0]
+            $userShortName = $userParts[1]
+            
+            # Construct the email address assuming the domain follows a pattern, e.g., user@domain.com
+            $userEmail = "$userShortName@$userDomain"
+            
+            # Confirm user name
+            $confirmedUserName = Read-Host "Current username is '$userShortName'. If this is correct, press Enter. Otherwise, enter the correct username"
+            if (-not [string]::IsNullOrEmpty($confirmedUserName)) {
+                $userShortName = $confirmedUserName
+            }
+
+            # Confirm user email
+            $confirmedUserEmail = Read-Host "Current email is '$userEmail'. If this is correct, press Enter. Otherwise, enter the correct email"
+            if (-not [string]::IsNullOrEmpty($confirmedUserEmail)) {
+                $userEmail = $confirmedUserEmail
+            }
+            
+            # Configure Git
+            git config --global user.name "$userShortName"
+            git config --global user.email "$userEmail"
+            Write-Host "Git configured successfully with user name '$userShortName' and email '$userEmail'."
+        }
+        catch {
+            $errorMessage = "Error configuring Git with user name and email`n$_"
+            $errors += $errorMessage
+            Write-Host $errorMessage -ForegroundColor Red
+        }
+    } else {
+        Write-Host "Git configuration skipped by user."
     }
-    
-    # Configure Git
-    git config --global user.name "$userShortName"
-    git config --global user.email "$userEmail"
-    Write-Host "Git configured successfully with user name '$userShortName' and email '$userEmail'."
+} else {
+    Write-Host "The current shell can't find Git. Please install Git and re-run this script to configure Git."
 }
-catch {
-    $errorMessage = "Error configuring Git with user name and email`n$_"
-    $errors += $errorMessage
-    Write-Host $errorMessage -ForegroundColor Red
-}
+
 
 
 # List of VSCode extensions to install
